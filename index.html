@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Asistencia Escolar</title>
+</head>
+
+<body>
+
+    <h1>📚 Sistema de Asistencia</h1>
+
+    <!-- ===================== -->
+    <!-- 📍 UBICACIÓN -->
+    <!-- ===================== -->
+
+    <h2>📍 Ubicación</h2>
+
+    <p id="ubicacion">Esperando ubicación...</p>
+
+    <button id="verificar">
+        📍 Verificar ubicación
+    </button>
+
+    <hr>
+
+    <!-- ===================== -->
+    <!-- 👤 REGISTRO -->
+    <!-- ===================== -->
+
+    <h2>👤 Registrar alumno</h2>
+
+    <input
+        id="nombre"
+        type="text"
+        placeholder="Nombre"
+    >
+
+    <input
+        id="apellido"
+        type="text"
+        placeholder="Apellido"
+    >
+
+    <br><br>
+
+    <button id="registrar">
+        📝 Registrar mi cara
+    </button>
+
+    <hr>
+
+    <!-- ===================== -->
+    <!-- 📷 CÁMARA -->
+    <!-- ===================== -->
+
+    <h2>📷 Cámara</h2>
+
+    <video
+        id="video"
+        width="500"
+        autoplay
+        playsinline>
+    </video>
+
+    <p id="estado">
+        Cargando cámara...
+    </p>
+
+    <hr>
+
+    <!-- ===================== -->
+    <!-- ✅ ASISTENCIA -->
+    <!-- ===================== -->
+
+    <h2>✅ Asistencia</h2>
+
+    <button id="asistencia">
+        Marcar asistencia
+    </button>
+
+    <p id="resultado"></p>
+
+    <!-- Reconocimiento facial -->
+    <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
+
+    <!-- Nuestro código -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
