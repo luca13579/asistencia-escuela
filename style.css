@@ -125,3 +125,11 @@ label {
         margin: 6px 0;
     }
 }
+.logo-escuela {
+  display: block;
+  width: 120px;
+  max-width: 40%;
+  height: auto;
+  margin: 0 auto 20px;
+  object-fit: contain;
+}
