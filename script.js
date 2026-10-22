@@ -389,3 +389,46 @@ botonAsistencia.addEventListener("click", async function() {
     }
 
 });
+
+/* Lista de alumnos ficticios para probar */
+const alumnosPrueba = [
+  { nombre: "Juan", apellido: "Pérez", curso: "6to", division: "B" },
+  { nombre: "Sofía", apellido: "Gómez", curso: "6to", division: "B" },
+  { nombre: "Mateo", apellido: "López", curso: "6to", division: "B" },
+  { nombre: "Valentina", apellido: "Díaz", curso: "6to", division: "B" }
+];
+
+const contenedorAlumnos = document.getElementById("listaAlumnos");
+const buscadorAlumnos = document.getElementById("buscarAlumno");
+
+function mostrarAlumnos(filtro = "") {
+  if (!contenedorAlumnos) return;
+
+  contenedorAlumnos.replaceChildren();
+
+  const coincidencias = alumnosPrueba.filter(alumno =>
+    `${alumno.nombre} ${alumno.apellido}`
+      .toLowerCase()
+      .includes(filtro.toLowerCase())
+  );
+
+  if (coincidencias.length === 0) {
+    contenedorAlumnos.textContent = "No se encontraron alumnos.";
+    return;
+  }
+
+  coincidencias.forEach(alumno => {
+    const fila = document.createElement("p");
+    fila.textContent =
+      `${alumno.nombre} ${alumno.apellido} — ${alumno.curso} ${alumno.division}`;
+    contenedorAlumnos.appendChild(fila);
+  });
+}
+
+if (buscadorAlumnos) {
+  buscadorAlumnos.addEventListener("input", () => {
+    mostrarAlumnos(buscadorAlumnos.value);
+  });
+}
+
+mostrarAlumnos();
