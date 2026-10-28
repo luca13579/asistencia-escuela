@@ -1,131 +1,118 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asistencia Escolar</title>
-    <link rel="stylesheet" href="style.css">
-    <img src="logo.png" alt="Logo del IPET 412" class="logo-escuela">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-<div id="selectorUsuario">
-  <h1>Asistencia Escolar</h1>
-  <p>¿Cómo vas a ingresar?</p>
 
-  <button onclick="entrarComo('preceptor')">
-    Soy preceptor
-  </button>
+    <div id="selectorUsuario">
+        <img src="logo.png" alt="Logo del IPET 412" class="logo-escuela">
+        <h1>Asistencia Escolar</h1>
+        <p>Seleccioná cómo querés ingresar</p>
 
-  <button onclick="entrarComo('alumno')">
-    Soy alumno
-  </button>
-</div>
+        <button onclick="entrarComo('preceptor')">
+            Soy preceptor
+        </button>
 
-<div id="contenidoApp" style="display: none;">
-    <h1>📚 Sistema de Asistencia</h1>
-
-    <!-- ===================== -->
-    <!-- 📍 UBICACIÓN -->
-    <!-- ===================== -->
-
-    <h2>📍 Ubicación</h2>
-
-    <p id="ubicacion">Esperando ubicación...</p>
-
-    <button id="verificar">
-        📍 Verificar ubicación
-    </button>
-
-    <hr>
-
-    <!-- ===================== -->
-    <!-- 👤 REGISTRO -->
-    <!-- ===================== -->
-
-    <h2>👤 Registrar alumno</h2>
-
-    <input
-        id="nombre"
-        type="text"
-        placeholder="Nombre"
-    >
-
-    <input
-        id="apellido"
-        type="text"
-        placeholder="Apellido"
-    >
-
-    <br><br>
-
-    <button id="registrar">
-        📝 Registrar mi cara
-    </button>
-
-    <hr>
-
-    <!-- ===================== -->
-    <!-- 📷 CÁMARA -->
-    <!-- ===================== -->
-
-    <h2>📷 Cámara</h2>
-
-    <video
-        id="video"
-        width="500"
-        autoplay
-        playsinline>
-    </video>
-
-    <p id="estado">
-        Cargando cámara...
-    </p>
-
-    <hr>
-
-    <!-- ===================== -->
-    <!-- ✅ ASISTENCIA -->
-    <!-- ===================== -->
-
-    <h2>✅ Asistencia</h2>
-
-    <button id="asistencia">
-        Marcar asistencia
-    </button>
-
-    <p id="resultado"></p>
-
-    <!-- Reconocimiento facial -->
-    <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
-
-    <!-- Nuestro código -->
-    <script src="script.js?v=2"></script>
+        <button onclick="entrarComo('alumno')">
+            Soy alumno
+        </button>
     </div>
 
-<script>
-function entrarComo(tipo) {
-  document.getElementById("selectorUsuario").style.display = "none";
-  document.getElementById("contenidoApp").style.display = "block";
+    <div id="contenidoApp" style="display: none;">
 
-  if (tipo === "preceptor") {
-    alert("Ingresaste como preceptor");
-  } else {
-    alert("Ingresaste como alumno");
-  }
-}
-</script>
+        <h1>📚 Sistema de Asistencia</h1>
+
+        <button type="button" onclick="volverAlInicio()">
+            ← Volver al inicio
+        </button>
+
+        <!-- SECCIÓN ALUMNO -->
+        <div id="seccionAlumno" style="display: none;">
+
+            <h2>📍 Ubicación</h2>
+            <p id="ubicacion">Esperando ubicación...</p>
+
+            <button id="verificar">
+                📍 Verificar ubicación
+            </button>
+
+            <hr>
+
+            <h2>👤 Registrar alumno</h2>
+
+            <input id="nombre" type="text" placeholder="Nombre">
+            <input id="apellido" type="text" placeholder="Apellido">
+
+            <br><br>
+
+            <button id="registrar">
+                📝 Registrar mi cara
+            </button>
+
+            <hr>
+
+            <h2>📷 Cámara</h2>
+
+            <video id="video" width="500" autoplay playsinline></video>
+
+            <p id="estado">Cargando cámara...</p>
+
+            <hr>
+
+            <h2>✅ Asistencia</h2>
+
+            <button id="asistencia">
+                Marcar asistencia
+            </button>
+
+            <p id="resultado"></p>
+
+        </div>
+
+        <!-- SECCIÓN PRECEPTOR -->
+        <div id="seccionPreceptor" style="display: none;">
+
+            <h2>👨‍🎓 Lista de alumnos</h2>
+
+            <input
+                type="text"
+                id="buscarAlumno"
+                placeholder="Buscar por nombre o apellido..."
+            >
+
+            <div id="listaAlumnos"></div>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
+    <script src="script.js?v=2"></script>
+
+    <script>
+        function entrarComo(tipo) {
+            document.getElementById("selectorUsuario").style.display = "none";
+            document.getElementById("contenidoApp").style.display = "block";
+
+            document.getElementById("seccionAlumno").style.display =
+                tipo === "alumno" ? "block" : "none";
+
+            document.getElementById("seccionPreceptor").style.display =
+                tipo === "preceptor" ? "block" : "none";
+        }
+
+        function volverAlInicio() {
+            document.getElementById("contenidoApp").style.display = "none";
+            document.getElementById("selectorUsuario").style.display = "block";
+        }
+    </script>
+
 </body>
-<!-- Lista de alumnos -->
-<hr>
-
-<h2>👨‍🎓 Lista de alumnos</h2>
-
-<input
-  type="text"
-  id="buscarAlumno"
-  placeholder="Buscar por nombre o apellido..."
->
-
-<div id="listaAlumnos"></div>
 </html>
+```
