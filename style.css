@@ -1,135 +1,114 @@
 
-/* ===== DISEÑO MODERNO IPET 412 ===== */
-
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    min-height: 100vh;
-    padding: 30px 16px;
-    font-family: "Segoe UI", Arial, sans-serif;
-    color: #eaf1ff;
-    background:
-        radial-gradient(ellipse at top left, #193b70 0%, transparent 45%),
-        linear-gradient(135deg, #080f1e, #101c32 60%, #0b1425);
+  margin: 0;
+  padding: 24px 16px;
+  font-family: Arial, sans-serif;
+  color: #f1f5f9;
+  background: linear-gradient(135deg, #071426, #10294b);
+  min-height: 100vh;
 }
 
 h1, h2, h3 {
-    color: #ffffff;
-    margin-top: 0;
+  color: #ffffff;
 }
 
 h1 {
-    font-size: clamp(26px, 5vw, 38px);
-    letter-spacing: -1px;
+  text-align: center;
+  margin-bottom: 24px;
 }
 
 h2 {
-    font-size: 21px;
+  margin-top: 28px;
+  color: #60a5fa;
 }
 
-p {
-    color: #b9c8df;
-    line-height: 1.6;
+input,
+button,
+select {
+  font: inherit;
+  border-radius: 10px;
+  padding: 12px;
 }
 
-body > * {
-    max-width: 760px;
-    margin-left: auto;
-    margin-right: auto;
+input,
+select {
+  width: 100%;
+  margin: 8px 0;
+  color: #f8fafc;
+  background: #17263c;
+  border: 1px solid #355274;
 }
 
-section, form, .card, .contenedor, #camara,
-#ubicacion, video, canvas {
-    border-radius: 16px;
-}
-
-section, form, .card, .contenedor {
-    background: rgba(22, 36, 59, 0.92);
-    border: 1px solid #2b4163;
-    padding: 22px;
-    margin-bottom: 18px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+input::placeholder {
+  color: #a8b8cc;
 }
 
 button {
-    border: none;
-    border-radius: 12px;
-    padding: 13px 20px;
-    margin: 6px 4px 6px 0;
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    color: white;
-    font-size: 15px;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.25);
-    transition: transform 0.2s, filter 0.2s;
+  border: none;
+  color: white;
+  background: #2563eb;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 button:hover {
-    filter: brightness(1.12);
-    transform: translateY(-2px);
+  background: #1d4ed8;
 }
 
-input {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    padding: 13px;
-    margin: 8px 0 16px;
-    border-radius: 10px;
-    border: 1px solid #344b6d;
-    background: #0d192c;
-    color: #ffffff;
-    font-size: 16px;
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
-input:focus {
-    outline: 2px solid #3b82f6;
-    border-color: #60a5fa;
+video,
+canvas {
+  max-width: 100%;
+  border-radius: 12px;
 }
 
-video, canvas {
-    max-width: 100%;
-    height: auto;
-    border: 2px solid #34537e;
+#listaAlumnos {
+  margin-top: 12px;
+  padding: 12px;
+  color: #f1f5f9;
+  background: #111e32;
+  border: 1px solid #294466;
+  border-radius: 12px;
 }
 
-#ubicacion {
-    padding: 12px 15px;
-    background: #101f35;
-    border: 1px solid #2b4163;
+#listaAlumnos p {
+  margin: 0;
+  padding: 12px 8px;
+  border-bottom: 1px solid #294466;
 }
 
-a {
-    color: #7db4ff;
+#listaAlumnos p:last-child {
+  border-bottom: none;
 }
 
-label {
-    color: #dce8fa;
+#buscarAlumno {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #355274;
+  margin: 28px 0;
 }
 
 @media (max-width: 600px) {
-    body {
-        padding: 22px 12px;
-    }
+  body {
+    padding: 16px 12px;
+  }
 
-    section, form, .card, .contenedor {
-        padding: 17px;
-    }
+  button {
+    width: 100%;
+    margin-top: 8px;
+  }
+}
 
-    button {
-        width: 100%;
-        margin: 6px 0;
-    }
-}
-.logo-escuela {
-  display: block;
-  width: 120px;
-  max-width: 40%;
-  height: auto;
-  margin: 0 auto 20px;
-  object-fit: contain;
-}
