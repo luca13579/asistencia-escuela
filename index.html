@@ -101,6 +101,20 @@
 
     <!-- Nuestro código -->
     <script src="script.js?v=2"></script>
+    </div>
+
+<script>
+function entrarComo(tipo) {
+  document.getElementById("selectorUsuario").style.display = "none";
+  document.getElementById("contenidoApp").style.display = "block";
+
+  if (tipo === "preceptor") {
+    alert("Ingresaste como preceptor");
+  } else {
+    alert("Ingresaste como alumno");
+  }
+}
+</script>
 </body>
 <!-- Lista de alumnos -->
 <hr>
