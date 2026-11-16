@@ -1,118 +1,265 @@
-```html
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asistencia Escolar</title>
+    <title>Sistema de Asistencia | IPET 412</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <div id="selectorUsuario">
-        <img src="logo.png" alt="Logo del IPET 412" class="logo-escuela">
-        <h1>Asistencia Escolar</h1>
-        <p>Seleccioná cómo querés ingresar</p>
-
-        <button onclick="entrarComo('preceptor')">
-            Soy preceptor
-        </button>
-
-        <button onclick="entrarComo('alumno')">
-            Soy alumno
-        </button>
+<header class="encabezado">
+    <div class="marca">
+        <div>
+            <h1>IPET 412</h1>
+            <p>Sistema de gestión de asistencia</p>
+        </div>
     </div>
+    <span class="estado-sistema"><span></span> Sistema activo</span>
+</header>
 
-    <div id="contenidoApp" style="display: none;">
+<main class="contenedor">
 
-        <h1>📚 Sistema de Asistencia</h1>
+    <!-- INICIO -->
+    <section id="inicio" class="pantalla pantalla-activa">
+        <div class="bienvenida">
+            <span class="etiqueta">INSTITUCIÓN EDUCATIVA</span>
 
-        <button type="button" onclick="volverAlInicio()">
-            ← Volver al inicio
-        </button>
+            <h2>UNA FORMA MÁS SIMPLE DE ESTAR PRESENTE</h2>
 
-        <!-- SECCIÓN ALUMNO -->
-        <div id="seccionAlumno" style="display: none;">
+            <p>Bienvenido al sistema de registro de asistencia del IPET 412.</p>
 
-            <h2>📍 Ubicación</h2>
-            <p id="ubicacion">Esperando ubicación...</p>
+            <div class="opciones-inicio">
+                <button class="boton boton-principal" onclick="mostrarPantalla('alumno')">
+                    Marcar asistencia
+                </button>
 
-            <button id="verificar">
-                📍 Verificar ubicación
-            </button>
-
-            <hr>
-
-            <h2>👤 Registrar alumno</h2>
-
-            <input id="NOMBRE" type="text" placeholder="NOMBRE">
-            <input id="APELLIDO" type="text" placeholder="APELLIDO">
-
-            <br><br>
-
-            <button id="registrar">
-                📝 Registrar mi cara
-            </button>
-
-            <hr>
-
-            <h2>📷 Cámara</h2>
-
-            <video id="video" width="500" autoplay playsinline></video>
-
-            <p id="estado">Cargando cámara...</p>
-
-            <hr>
-
-            <h2>✅ Asistencia</h2>
-
-            <button id="asistencia">
-                Marcar asistencia
-            </button>
-
-            <p id="resultado"></p>
-
+                <button class="boton boton-secundario" onclick="mostrarPantalla('login')">
+                    Panel de preceptor
+                </button>
+            </div>
         </div>
 
-        <!-- SECCIÓN PRECEPTOR -->
-        <div id="seccionPreceptor" style="display: none;">
+        <div class="tarjeta-informativa">
+            <div class="icono-informativo">✓</div>
+            <div>
+                <h3>Registro digital</h3>
+                <p>La asistencia se registra indicando los datos del alumno y verificando la ubicación.</p>
+            </div>
+        </div>
+    </section>
 
-            <h2>👨‍🎓 Lista de alumnos</h2>
-
-            <input
-                type="text"
-                id="buscarAlumno"
-                placeholder="Buscar por nombre o apellido..."
-            >
-
-            <div id="listaAlumnos"></div>
-
+    <!-- REGISTRO DEL ALUMNO -->
+    <section id="alumno" class="pantalla">
+        <div class="encabezado-seccion">
+            <div>
+                <span class="etiqueta">REGISTRO DE ALUMNOS</span>
+                <h2>Registrar asistencia</h2>
+                <p>Completá tus datos para registrar tu ingreso.</p>
+            </div>
+            <button class="boton boton-volver" onclick="mostrarPantalla('inicio')">← Volver</button>
         </div>
 
-    </div>
+        <div class="tarjeta formulario-tarjeta">
+            <h3>Datos personales</h3>
+            <p class="texto-ayuda">Todos los campos son obligatorios.</p>
 
-    <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
-    <script src="script.js?v=2"></script>
+            <div class="formulario-grid">
+                <div class="campo">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" placeholder="Ingresá tu nombre" autocomplete="given-name">
+                </div>
 
-    <script>
-        function entrarComo(tipo) {
-            document.getElementById("selectorUsuario").style.display = "none";
-            document.getElementById("contenidoApp").style.display = "block";
+                <div class="campo">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" id="apellido" placeholder="Ingresá tu apellido" autocomplete="family-name">
+                </div>
 
-            document.getElementById("seccionAlumno").style.display =
-                tipo === "alumno" ? "block" : "none";
+                <div class="campo">
+                    <label for="curso">Curso</label>
+                    <select id="curso">
+                        <option value="">Seleccionar curso</option>
+                        <option>1°</option>
+                        <option>2°</option>
+                        <option>3°</option>
+                        <option>4°</option>
+                        <option>5°</option>
+                        <option>6°</option>
+                        <option>7°</option>
+                    </select>
+                </div>
 
-            document.getElementById("seccionPreceptor").style.display =
-                tipo === "preceptor" ? "block" : "none";
-        }
+                <div class="campo">
+                    <label for="division">División</label>
+                    <select id="division">
+                        <option value="">Seleccionar división</option>
+                        <option>A</option>
+                        <option>B</option>
+                        <option>C</option>
+                    </select>
+                </div>
+            </div>
 
-        function volverAlInicio() {
-            document.getElementById("contenidoApp").style.display = "none";
-            document.getElementById("selectorUsuario").style.display = "block";
-        }
-    </script>
+            <div class="separador"></div>
 
+            <h3>Verificación de ubicación</h3>
+            <p class="texto-ayuda">Es necesario permitir el acceso a la ubicación del dispositivo.</p>
+
+            <div class="estado-verificacion">
+                <div class="indicador-icono">⌖</div>
+                <div class="estado-texto">
+                    <strong>Ubicación de la institución</strong>
+                    <span id="estadoUbicacion">Ubicación todavía no verificada.</span>
+                </div>
+                <span id="insigniaGPS" class="insignia pendiente">Pendiente</span>
+            </div>
+
+            <button class="boton boton-secundario boton-ancho" id="verificarUbicacion" onclick="verificarGPS()">
+                Verificar ubicación
+            </button>
+
+            <div class="separador"></div>
+
+            <h3>Vista previa de cámara</h3>
+            <p class="texto-ayuda">Activá la cámara para continuar con el registro.</p>
+
+            <div class="camara-contenedor">
+                <video id="video" autoplay playsinline muted></video>
+                <div id="cameraPlaceholder" class="camara-placeholder">
+                    <span>◎</span>
+                    <p>La cámara está desactivada</p>
+                </div>
+            </div>
+
+            <div class="botones-camara">
+                <button class="boton boton-secundario" id="activarCamara" onclick="activarCamara()">
+                    Activar cámara
+                </button>
+                <button class="boton boton-peligro" id="apagarCamara" onclick="apagarCamara()" disabled>
+                    Apagar cámara
+                </button>
+            </div>
+
+            <p id="estadoCamara" class="mensaje-estado">Cámara desactivada.</p>
+
+            <div class="separador"></div>
+
+            <button class="boton boton-principal boton-ancho boton-registrar" id="marcarAsistencia" onclick="registrarAsistencia()">
+                Registrar mi asistencia
+            </button>
+
+            <p id="resultadoAlumno" class="resultado"></p>
+        </div>
+    </section>
+
+    <!-- LOGIN PRECEPTOR -->
+    <section id="login" class="pantalla">
+        <div class="encabezado-seccion">
+            <div>
+                <span class="etiqueta">PERSONAL INSTITUCIONAL</span>
+                <h2>Acceso de preceptoría</h2>
+                <p>Ingresá tus credenciales para continuar.</p>
+            </div>
+            <button class="boton boton-volver" onclick="mostrarPantalla('inicio')">← Volver</button>
+        </div>
+
+        <div class="tarjeta login-tarjeta">
+            <div class="login-icono">412</div>
+            <h3>Iniciar sesión</h3>
+
+            <form id="formLogin">
+                <div class="campo">
+                    <label for="usuario">Usuario</label>
+                    <input type="text" id="usuario" placeholder="Usuario" autocomplete="username" required>
+                </div>
+
+                <div class="campo">
+                    <label for="clave">Contraseña</label>
+                    <input type="password" id="clave" placeholder="Contraseña" autocomplete="current-password" required>
+                </div>
+
+                <button type="submit" class="boton boton-principal boton-ancho">Ingresar al panel</button>
+                <p id="mensajeLogin" class="resultado"></p>
+            </form>
+        </div>
+    </section>
+
+    <!-- PANEL PRECEPTOR -->
+    <section id="panel" class="pantalla">
+        <div class="encabezado-seccion panel-encabezado">
+            <div>
+                <span class="etiqueta">PANEL ADMINISTRATIVO</span>
+                <h2>Panel de preceptoría</h2>
+                <p>Control diario de asistencia.</p>
+            </div>
+            <button class="boton boton-peligro" id="cerrarSesion" onclick="cerrarSesion()">Cerrar sesión</button>
+        </div>
+
+        <div class="resumen-panel">
+            <div class="resumen-card">
+                <span class="resumen-titulo">Presentes hoy</span>
+                <strong id="totalAsistencias">0</strong>
+                <small>Asistencias registradas</small>
+            </div>
+
+            <div class="resumen-card">
+                <span class="resumen-titulo">Fecha actual</span>
+                <strong id="fechaActual">--/--/----</strong>
+                <small id="relojActual">--:--:--</small>
+            </div>
+        </div>
+
+        <div class="tarjeta listado-tarjeta">
+            <div class="listado-encabezado">
+                <div>
+                    <span class="etiqueta">REGISTRO DIARIO</span>
+                    <h3>Alumnos presentes</h3>
+                    <p id="fechaListado" class="texto-ayuda"></p>
+                </div>
+
+                <div class="acciones-listado">
+                    <button class="boton boton-secundario" onclick="imprimirAsistencia()">Imprimir lista</button>
+                    <button class="boton boton-principal" onclick="exportarCSV()">Exportar CSV</button>
+                </div>
+            </div>
+
+            <div class="campo campo-busqueda no-imprimir">
+                <label for="buscarAlumno">Buscar alumno</label>
+                <input type="search" id="buscarAlumno" placeholder="Buscar por nombre, apellido o curso..." oninput="actualizarTabla()">
+            </div>
+
+            <div class="tabla-contenedor">
+                <table id="tablaAsistencias">
+                    <thead>
+                        <tr>
+                            <th>Apellido</th>
+                            <th>Nombre</th>
+                            <th>Curso</th>
+                            <th>División</th>
+                            <th>Hora de ingreso</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoTabla">
+                        <tr><td colspan="5">Todavía no hay asistencias registradas hoy.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p id="contadorAlumnos" class="contador-listado">0 alumnos presentes</p>
+        </div>
+
+        <p class="nota-panel no-imprimir">
+            El listado muestra únicamente las asistencias correspondientes a la fecha actual.
+        </p>
+    </section>
+
+</main>
+
+<footer class="pie">
+    <p>IPET 412 · Sistema de gestión de asistencia</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
-```
